@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expenses Controller - Login</title>
+    <link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head> 
+  <nav></nav>
+  <body class="centralize">
+    <form>
+      <div class="form-field">
+        <div><label for="email">Email</label></div>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          onchange="onChangeEmail()"
+          class="form-control"
+          placeholder="seu@email.com"
+        />
+      </div>
+      <div class="error" id="email-required-error">Email é obrigatório</div>
+      <div class="error" id="email-invalid-error">Email inválido</div>
+
+      <div>
+        <div><label for="password">Senha</label></div>
+
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          onchange="onChangePassword()"
+          placeholder="senha"
+        />
+        <div class="error" id="password-required-error">Senha obrigatória</div>
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="clear"
+          disabled="true"
+          id="recover-password-button"
+          onclick="recoverPassword()"
+        >
+          Recuperar a senha
+        </button>
+      </div>
+      <div>
+        <button
+          type="reset"
+          class="btn btn-primary"
+          id="login-button"
+          onclick="login()"
+        >
+          Entrar
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary" onclick="register()">
+          Registrar
+        </button>
+      </div>
+    </form>
+  </body>
+
+  <footer></footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="firebase-init.js"></script>
+  <script src="index.js"></script>
+  <script src="validations.js"></script>
+  <script src="loading.js"></script>
+</html>
