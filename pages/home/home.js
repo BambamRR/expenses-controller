@@ -6,15 +6,19 @@ function logout(){
         hideLoading();
     }).catch(error => {
         alert("Logout falhou", error.code);
-    })
+    });
 };
 
 findTransactions();
 
 function findTransactions() {
-    setTimeout(() => {
-        addTransactionsToScreen(fakeTransactions);
-    }, 1000)
+    firebase.firestore()
+    .collection('transactions')
+    .get()
+    .then(snapshot => {
+       const transactions = snapshot.docs.map(doc => doc.data())
+       addTransactionsToScreen(transactions);
+    });
 };
 
 function addTransactionsToScreen(transactions) {
