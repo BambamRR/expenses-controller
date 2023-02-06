@@ -1,88 +1,78 @@
-function logout(){
-    showLoading();
+function logout() {
     firebase.auth().signOut().then(() => {
-        alert("Logout realizado!");
-        window.location.href = "../../index.html"
-        hideLoading();
-    }).catch(error => {
-        alert("Logout falhou", error.code);
-    });
-};
+        window.location.href = "../../index.html";
+    }).catch(() => {
+        alert('Erro ao fazer logout');
+    })
+}
 
-findTransactions();
+firebase.auth().onAuthStateChanged(user => {
+    if (user){
+        findTransactions(user);
+    }
+})
 
-function findTransactions() {
+function findTransactions(user) {
+    showLoading();
     firebase.firestore()
-    .collection('transactions')
-    .get()
-    .then(snapshot => {
-       const transactions = snapshot.docs.map(doc => doc.data())
-       addTransactionsToScreen(transactions);
-    });
-};
+        .collection('transactions')
+        .where('user.uid', '==', user.uid)
+        .orderBy('date', 'desc')
+        .get()
+        .then(snapshot => {
+            hideLoading();
+            const transactions = snapshot.docs.map(doc => doc.data());
+            addTransactionsToScreen(transactions);
+        })
+        .catch(error => {
+            hideLoading();
+            console.log(error);
+            alert('Erro ao recuperar transacoes');
+        })
+}
 
 function addTransactionsToScreen(transactions) {
     const orderedList = document.getElementById('transactions');
 
     transactions.forEach(transaction => {
-       const li = document.createElement('li');
-       li.classList.add(transaction.type);
+        const li = document.createElement('li');
+        li.classList.add(transaction.type);
 
-       const date = document.createElement('p');
-       date.innerHTML = formateDate(transaction.date);
+        const date = document.createElement('p');
+        date.innerHTML = formatDate(transaction.date);
         li.appendChild(date);
 
-       const money = document.createElement('p');
-       money.innerHTML = formatMoney(transaction.money);
-       li.appendChild(money);
+        const money = document.createElement('p');
+        money.innerHTML = formatMoney(transaction.money);
+        li.appendChild(money);
 
-       const type = document.createElement('p');
-       type.innerHTML = transaction.transactionType;
-       li.appendChild(type);
+        const type = document.createElement('p');
+        type.innerHTML = transaction.transactionType;
+        li.appendChild(type);
 
-       if(transaction.description) {
-        const description = document.createElement('p');
-        description.innerHTML = transaction.description;
-        li.appendChild(description);
-       }
+        if (transaction.description) {
+            const description = document.createElement('p');
+            description.innerHTML = transaction.description;
+            li.appendChild(description);
+        }
 
-       orderedList.appendChild(li);
+        orderedList.appendChild(li);
     });
-};
+}
 
-function formateDate(date) {
-    return new Date(date).toLocaleDateString('pt-BR');
-};
+function formatDate(date) {
+    return new Date(date).toLocaleDateString('pt-br');
+}
 
-function  formatMoney(money) {
+function formatMoney(money) {
     return `${money.currency} ${money.value.toFixed(2)}`
 }
 
-const fakeTransactions = [{
-        type: 'expense',
-        date: '2023-01-20',
-        money: {
-            currency: 'R$',
-            value: 10
-        },
-        transactionType: 'Supermercado'
-    },{
-        type: 'income',
-        date: '2023-01-19',
-        money: {
-            currency: 'R$',
-            value: 5000
-        },
-        transactionType: 'Salário',
-        description: 'Empresa A'
-    },{
-        type: 'expense',
-        date: '2023-01-20',
-        money: {
-            currency: 'EUR',
-            value: 600
-        },
-        transactionType: 'Transporte',
-        description: 'Metro ida e volta'
-    }
-];
+function newTransaction(){
+    window.location.href = "../transaction/transaction.html"
+
+}
+
+const form = {
+    inputFormId: () => document.getElementById.value("input-form-id")
+}

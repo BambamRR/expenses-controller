@@ -19,7 +19,28 @@
     <ol id="transactions">
      
     </ol>
-    <button class="fab fixed bottom right">+</button>
+    <button class="fab fixed bottom right" onclick="newTransaction()">+</button>
+    <div class="input-form-class" id="input-form-id">
+      <div class="transaction-choice">
+        <input type="radio" name="expense">
+        <label for="expense">Custo</label>
+        <input type="radio" name="income">
+        <label for="income">Ganho</label>
+      </div>
+      <div class="input-values">
+        <label for="date">Data</label>
+        <input type="text" name="date">
+        <label for="description">Descrição</label>
+        <input type="text" name="description">
+        <label for="money">Valor</label>
+        <input type="number" name="money">
+        <label for="transactionType">Tipo de transação</label>
+        <input type="text" name="transactionType">
+      </div>
+      
+
+    </div>
+    
   </body>
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>

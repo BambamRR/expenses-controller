@@ -1,11 +1,3 @@
-header button {
-    width: auto;
-}
-
-header {
-    text-align: right;
-}
-
 ol {
     list-style-type: none;
     padding: 0;
@@ -32,4 +24,8 @@ ol li.income {
 
 p {
     margin: 4px 0;
+}
+
+.input-form-class {
+    display: none;
 }
