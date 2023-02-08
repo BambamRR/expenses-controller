@@ -4,4 +4,5 @@ function logout() {
     }).catch(() => {
         alert('Erro ao fazer logout');
     })
+    
 }
