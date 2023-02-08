@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expenses Controller - Home</title>
+    <link rel="stylesheet" href="../../../styles/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../global.css" />
+    <link rel="stylesheet" href="./transaction.css" />
+  </head>
+  <body class="">
+    <header>
+      <button type="button" class="btn btn-danger" onclick="logout()">
+        Sair
+      </button>
+    </header>
+    <div class="">
+      <div>
+        <p>Transações</p>
+        <input type="radio" name="despesa" id="despesa" checked />
+        <label for="despesa">Despesa</label>
+        <input type="radio" name="receita" id="receita" /><label>Receita</label>
+      </div>
+      <br />
+
+      <div class="form-field">
+        <div><label for="data">Data</label></div>
+        <input type="date" class="form-control" name="data" />
+      </div>
+      <br />
+      <div class="form-field">
+        <div>
+          <input type="number" name="value" id="value" />
+          <label for="value">Valor</label>
+        </div>
+      </div>
+      <div class="form-field">
+        <select name="currency" id="currency">
+          <option value="real" selected>Real</option>
+          <option value="dolar">Dolar</option>
+          <option value="euro">Euro</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <div><label for="transactionType">Tipo de Transação</label></div>
+        <select name="transactionType" id="transactionType">
+          <option value="">Acomodação</option>
+          <option value="">Alimentação</option>
+          <option value="">Academia</option>
+          <option value="">Supermercado</option>
+          <option value="">Salário</option>
+          <option value="">Transporte</option>
+          <option value="" selected>Outros</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="description">Descrição</label>
+        <input type="text" name="description" id="description">
+      </div>
+      <div>
+        <button class="btn btn-primary">Salvar</button>
+        <button class="btn btn-danger">Cancelar</button>
+      </div>
+    </div>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+  <script src="../../firebase-init.js"></script>
+  <script src="../../auth-guard.js"></script>/
+  <script src="../../loading.js"></script>
+  <script src="../../logout.js"></script>
+  <script src="transaction.js"></script>
+</html>
